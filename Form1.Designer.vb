@@ -24,6 +24,10 @@ Partial Class Form1
     Private Sub InitializeComponent()
         components = New ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form1))
+        ConexionBDBindingSource = New BindingSource(components)
+        btnBorrar = New Button()
+        btnExcel = New Button()
+        btnActualizar = New Button()
         DataGridView1 = New DataGridView()
         Cliente = New DataGridViewTextBoxColumn()
         Expediente = New DataGridViewTextBoxColumn()
@@ -35,13 +39,42 @@ Partial Class Form1
         FechaFin = New DataGridViewTextBoxColumn()
         IdCliente = New DataGridViewTextBoxColumn()
         Borrado = New DataGridViewCheckBoxColumn()
-        ConexionBDBindingSource = New BindingSource(components)
-        btnBorrar = New Button()
-        btnExcel = New Button()
-        btnActualizar = New Button()
-        CType(DataGridView1, ComponentModel.ISupportInitialize).BeginInit()
+        btnEnviar = New Button()
         CType(ConexionBDBindingSource, ComponentModel.ISupportInitialize).BeginInit()
+        CType(DataGridView1, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
+        ' 
+        ' ConexionBDBindingSource
+        ' 
+        ConexionBDBindingSource.DataSource = GetType(ConexionBD)
+        ' 
+        ' btnBorrar
+        ' 
+        btnBorrar.Font = New Font("Segoe UI", 9F)
+        btnBorrar.Location = New Point(584, 202)
+        btnBorrar.Name = "btnBorrar"
+        btnBorrar.Size = New Size(105, 33)
+        btnBorrar.TabIndex = 2
+        btnBorrar.Text = "No localizada"
+        btnBorrar.UseVisualStyleBackColor = True
+        ' 
+        ' btnExcel
+        ' 
+        btnExcel.Image = My.Resources.Resources.sobresalir1
+        btnExcel.Location = New Point(12, 201)
+        btnExcel.Name = "btnExcel"
+        btnExcel.Size = New Size(33, 33)
+        btnExcel.TabIndex = 4
+        btnExcel.UseVisualStyleBackColor = True
+        ' 
+        ' btnActualizar
+        ' 
+        btnActualizar.Image = CType(resources.GetObject("btnActualizar.Image"), Image)
+        btnActualizar.Location = New Point(545, 202)
+        btnActualizar.Name = "btnActualizar"
+        btnActualizar.Size = New Size(33, 33)
+        btnActualizar.TabIndex = 3
+        btnActualizar.UseVisualStyleBackColor = True
         ' 
         ' DataGridView1
         ' 
@@ -51,7 +84,7 @@ Partial Class Form1
         DataGridView1.Location = New Point(12, 10)
         DataGridView1.Name = "DataGridView1"
         DataGridView1.SelectionMode = DataGridViewSelectionMode.CellSelect
-        DataGridView1.Size = New Size(761, 187)
+        DataGridView1.Size = New Size(788, 187)
         DataGridView1.TabIndex = 0
         ' 
         ' Cliente
@@ -136,48 +169,28 @@ Partial Class Form1
         ' Borrado
         ' 
         Borrado.DataPropertyName = "Borrado"
-        Borrado.HeaderText = "Borrar"
+        Borrado.HeaderText = "Seleccionar"
         Borrado.Name = "Borrado"
         Borrado.Resizable = DataGridViewTriState.False
         Borrado.SortMode = DataGridViewColumnSortMode.Automatic
-        Borrado.Width = 50
+        Borrado.Width = 78
         ' 
-        ' ConexionBDBindingSource
+        ' btnEnviar
         ' 
-        ConexionBDBindingSource.DataSource = GetType(ConexionBD)
-        ' 
-        ' btnBorrar
-        ' 
-        btnBorrar.Location = New Point(673, 203)
-        btnBorrar.Name = "btnBorrar"
-        btnBorrar.Size = New Size(100, 33)
-        btnBorrar.TabIndex = 1
-        btnBorrar.Text = "Borrar Petición"
-        btnBorrar.UseVisualStyleBackColor = True
-        ' 
-        ' btnExcel
-        ' 
-        btnExcel.Image = My.Resources.Resources.sobresalir1
-        btnExcel.Location = New Point(12, 203)
-        btnExcel.Name = "btnExcel"
-        btnExcel.Size = New Size(33, 33)
-        btnExcel.TabIndex = 2
-        btnExcel.UseVisualStyleBackColor = True
-        ' 
-        ' btnActualizar
-        ' 
-        btnActualizar.Image = CType(resources.GetObject("btnActualizar.Image"), Image)
-        btnActualizar.Location = New Point(634, 203)
-        btnActualizar.Name = "btnActualizar"
-        btnActualizar.Size = New Size(33, 32)
-        btnActualizar.TabIndex = 3
-        btnActualizar.UseVisualStyleBackColor = True
+        btnEnviar.Font = New Font("Segoe UI", 9F)
+        btnEnviar.Location = New Point(695, 202)
+        btnEnviar.Name = "btnEnviar"
+        btnEnviar.Size = New Size(105, 33)
+        btnEnviar.TabIndex = 1
+        btnEnviar.Text = "Enviar petición"
+        btnEnviar.UseVisualStyleBackColor = True
         ' 
         ' Form1
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(794, 248)
+        ClientSize = New Size(812, 248)
+        Controls.Add(btnEnviar)
         Controls.Add(btnActualizar)
         Controls.Add(btnExcel)
         Controls.Add(btnBorrar)
@@ -185,16 +198,15 @@ Partial Class Form1
         Icon = CType(resources.GetObject("$this.Icon"), Icon)
         Name = "Form1"
         Text = "Peticiones a Back Office"
-        CType(DataGridView1, ComponentModel.ISupportInitialize).EndInit()
         CType(ConexionBDBindingSource, ComponentModel.ISupportInitialize).EndInit()
+        CType(DataGridView1, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
     End Sub
-
-    Friend WithEvents DataGridView1 As DataGridView
     Friend WithEvents ConexionBDBindingSource As BindingSource
     Friend WithEvents btnBorrar As Button
     Friend WithEvents btnExcel As Button
     Friend WithEvents btnActualizar As Button
+    Friend WithEvents DataGridView1 As DataGridView
     Friend WithEvents Cliente As DataGridViewTextBoxColumn
     Friend WithEvents Expediente As DataGridViewTextBoxColumn
     Friend WithEvents DNI As DataGridViewTextBoxColumn
@@ -205,5 +217,6 @@ Partial Class Form1
     Friend WithEvents FechaFin As DataGridViewTextBoxColumn
     Friend WithEvents IdCliente As DataGridViewTextBoxColumn
     Friend WithEvents Borrado As DataGridViewCheckBoxColumn
+    Friend WithEvents btnEnviar As Button
 
 End Class
